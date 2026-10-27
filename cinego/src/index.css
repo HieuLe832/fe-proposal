@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+/*
+ * CineGo semantic tokens. Six modes = 3 palettes x 2 design versions:
+ *   original : navy dark / cool light / beige   (Figma "SE_FRI")
+ *   edited   : warm dark / rose light / beige   (Figma "SE_FRI Copy")
+ * Values come from the Figma variable collections (color/*).
+ */
+@theme inline {
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --color-bg: var(--c-background);
+  --color-surface: var(--c-surface);
+  --color-raised: var(--c-raised);
+  --color-fg: var(--c-text);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-border);
+  --color-primary: var(--c-primary);
+  --color-gold: var(--c-gold);
+  --color-success: var(--c-success);
+  --color-warning: var(--c-warning);
+  --color-danger: var(--c-error);
+  --color-info: var(--c-info);
+  --color-on-primary: var(--c-on-primary);
+  --color-on-gold: var(--c-on-gold);
+
+  --radius-control: 8px;
+  --radius-card: 12px;
+}
+
+:root,
+[data-theme='orig-dark'] {
+  color-scheme: dark;
+  --c-background: #0f1220;
+  --c-surface: #181c2e;
+  --c-raised: #232940;
+  --c-text: #f4f5f7;
+  --c-muted: #adb5ce;
+  --c-border: #3b435d;
+  --c-primary: #e50914;
+  --c-gold: #f5b301;
+  --c-success: #52d89a;
+  --c-warning: #ffc56b;
+  --c-error: #ff858b;
+  --c-info: #86b9ff;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #151515;
+  --poster-1: #586175;
+  --poster-2: #6b6471;
+  --poster-3: #5b6777;
+  --poster-4: #3f5962;
+  --poster-5: #636a61;
+  --poster-to: #151929;
+  --hero-from: #586175;
+  --hero-via: #2d344b;
+  --hero-to: #141827;
+}
+
+[data-theme='orig-light'] {
+  color-scheme: light;
+  --c-background: #f7f8fb;
+  --c-surface: #ffffff;
+  --c-raised: #e6eaf3;
+  --c-text: #0f1220;
+  --c-muted: #5b6480;
+  --c-border: #c9cfdd;
+  --c-primary: #e50914;
+  --c-gold: #946600;
+  --c-success: #0b7a4b;
+  --c-warning: #8a5a00;
+  --c-error: #c4122f;
+  --c-info: #1d5fbf;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #ffffff;
+  --poster-1: #c0c3cb;
+  --poster-2: #c7c4c9;
+  --poster-3: #c1c5cb;
+  --poster-4: #b6c0c3;
+  --poster-5: #c4c6c3;
+  --poster-to: #e3e7f1;
+  --hero-from: #f4f6fc;
+  --hero-via: #e1e6f3;
+  --hero-to: #cbd3e8;
+}
+
+[data-theme='orig-beige'] {
+  color-scheme: light;
+  --c-background: #f5efe4;
+  --c-surface: #fcf9f2;
+  --c-raised: #ebe2d1;
+  --c-text: #2b2118;
+  --c-muted: #6b5d4d;
+  --c-border: #d6c9b1;
+  --c-primary: #e50914;
+  --c-gold: #7f5600;
+  --c-success: #1f7a4d;
+  --c-warning: #8a5a00;
+  --c-error: #b3122a;
+  --c-info: #1d5fbf;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #ffffff;
+  --poster-1: #b7b7b8;
+  --poster-2: #bfb9b7;
+  --poster-3: #b9bab9;
+  --poster-4: #adb4b1;
+  --poster-5: #bcbbb0;
+  --poster-to: #ede4d3;
+  --hero-from: #fbf6ea;
+  --hero-via: #efe6d2;
+  --hero-to: #ddd0b6;
+}
+
+[data-theme='edit-dark'] {
+  color-scheme: dark;
+  --c-background: #1d1616;
+  --c-surface: #261d1d;
+  --c-raised: #312626;
+  --c-text: #eeeeee;
+  --c-muted: #b8acac;
+  --c-border: #4a3d3d;
+  --c-primary: #d13a3a;
+  --c-gold: #d9b36c;
+  --c-success: #6fcf9f;
+  --c-warning: #e8b86d;
+  --c-error: #f7707f;
+  --c-info: #86b9ff;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #151515;
+  --poster-1: #703636;
+  --poster-2: #6b4f55;
+  --poster-3: #6f5535;
+  --poster-4: #5a3b4e;
+  --poster-5: #4e534b;
+  --poster-to: #181111;
+  --hero-from: #6b3030;
+  --hero-via: #3b2020;
+  --hero-to: #181111;
+}
+
+[data-theme='edit-light'] {
+  color-scheme: light;
+  --c-background: #f7f4f3;
+  --c-surface: #ffffff;
+  --c-raised: #efe8e6;
+  --c-text: #1d1616;
+  --c-muted: #6a5c5c;
+  --c-border: #ddd3d1;
+  --c-primary: #c73232;
+  --c-gold: #8a6a1f;
+  --c-success: #1f7a4d;
+  --c-warning: #8a5a00;
+  --c-error: #b3122a;
+  --c-info: #1d5fbf;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #ffffff;
+  --poster-1: #d9bdb8;
+  --poster-2: #d6c3c6;
+  --poster-3: #d8c7ae;
+  --poster-4: #cdbbc6;
+  --poster-5: #c9ccc0;
+  --poster-to: #f1e8e5;
+  --hero-from: #f6f0ee;
+  --hero-via: #eadfdc;
+  --hero-to: #d9c9c5;
+}
+
+[data-theme='edit-beige'] {
+  color-scheme: light;
+  --c-background: #f5efe4;
+  --c-surface: #fcf9f2;
+  --c-raised: #ebe2d1;
+  --c-text: #2b2118;
+  --c-muted: #6b5d4d;
+  --c-border: #d6c9b1;
+  --c-primary: #c73232;
+  --c-gold: #7f5600;
+  --c-success: #1f7a4d;
+  --c-warning: #8a5a00;
+  --c-error: #b3122a;
+  --c-info: #1d5fbf;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #ffffff;
+  --poster-1: #b7b7b8;
+  --poster-2: #bfb9b7;
+  --poster-3: #b9bab9;
+  --poster-4: #adb4b1;
+  --poster-5: #bcbbb0;
+  --poster-to: #ede4d3;
+  --hero-from: #fbf6ea;
+  --hero-via: #efe6d2;
+  --hero-to: #ddd0b6;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--c-background);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
