@@ -33,7 +33,7 @@ export function FilmArt({ className, title = 'Chuyến Tàu Cuối', size = 'lg'
   )
 }
 
-/* ───────────── Theme switcher (6 modes) ───────────── */
+/* ───────────── Theme switcher ───────────── */
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme()
   const [open, setOpen] = useState(false)
@@ -41,7 +41,7 @@ export function ThemeSwitcher() {
   return (
     <div className="fixed bottom-20 right-4 z-40 flex flex-col items-end gap-2 lg:bottom-4">
       {open && (
-        <div className="w-56 rounded-card border border-line bg-surface p-3 shadow-xl" role="menu">
+        <div className="max-h-[70vh] w-56 overflow-y-auto rounded-card border border-line bg-surface p-3 shadow-xl" role="menu">
           {(['Gốc', 'Chỉnh sửa'] as const).map((ver) => (
             <div key={ver} className="mb-2 last:mb-0">
               <p className="mb-1 px-1 text-xs text-muted">Bản {ver.toLowerCase()}</p>
@@ -178,15 +178,53 @@ export function Panel({ title, subtitle, children, className }: { title?: string
   )
 }
 
-/* Message with colored left rule (used by auth screens). */
-export function Message({ tone, title, children }: { tone: 'success' | 'error' | 'warning' | 'info'; title: string; children?: ReactNode }) {
-  const c = { success: ['border-success', 'text-success', '✓'], error: ['border-danger', 'text-danger', '×'], warning: ['border-warning', 'text-warning', '!'], info: ['border-info', 'text-info', 'ⓘ'] }[tone]
+/* Callout: colored left rule in the original themes; tinted bordered card with a circle icon in the edited themes. */
+export type CalloutTone = 'success' | 'error' | 'warning' | 'info'
+
+const CALLOUT_ICON: Record<CalloutTone, ReactNode> = {
+  success: <path d="m8.5 12.5 2.5 2.5 4.5-5" />,
+  error: <path d="m9 9 6 6m0-6-6 6" />,
+  warning: <path d="M12 7.5v5.5m0 3h.01" />,
+  info: <path d="M12 11v5.5m0-8.5h.01" />,
+}
+const CALLOUT_TEXT: Record<CalloutTone, string> = { success: 'text-success', error: 'text-danger', warning: 'text-warning', info: 'text-info' }
+const CALLOUT_RULE: Record<CalloutTone, string> = { success: 'border-success', error: 'border-danger', warning: 'border-warning', info: 'border-info' }
+const CALLOUT_GLYPH: Record<CalloutTone, string> = { success: '✓', error: '×', warning: '!', info: 'ⓘ' }
+
+/* `glyph` is only shown in the original themes; `children` are the body paragraphs. */
+export function Callout({ tone, title, glyph, children }: { tone: CalloutTone; title: ReactNode; glyph?: string; children?: ReactNode }) {
+  const { theme } = useTheme()
+  const role = tone === 'error' ? 'alert' : 'status'
+
+  if (theme.startsWith('edit-')) {
+    return (
+      <div className={cx('msg-edit flex flex-col gap-1 rounded-card p-4 text-sm text-muted', `msg-${tone}`)} role={role}>
+        <p className="flex items-center gap-2 font-semibold text-fg">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={cx('shrink-0', CALLOUT_TEXT[tone])}>
+            <circle cx="12" cy="12" r="9" />
+            {CALLOUT_ICON[tone]}
+          </svg>
+          {title}
+        </p>
+        {children}
+      </div>
+    )
+  }
+
   return (
-    <div className={cx('flex flex-col gap-0 rounded-lg border-l-[3px] bg-raised p-4 text-sm font-medium', c[0])} role={tone === 'error' ? 'alert' : 'status'}>
-      <p className={c[1]}>
-        {c[2]}&nbsp;&nbsp;{title}
+    <div className={cx('flex flex-col gap-0 rounded-lg border-l-[3px] bg-raised p-4 text-sm font-medium', CALLOUT_RULE[tone])} role={role}>
+      <p className={CALLOUT_TEXT[tone]}>
+        {glyph ?? CALLOUT_GLYPH[tone]}&nbsp;&nbsp;{title}
       </p>
-      {children && <p className="text-muted">{children}</p>}
+      {children}
     </div>
+  )
+}
+
+export function Message({ tone, title, children }: { tone: CalloutTone; title: string; children?: ReactNode }) {
+  return (
+    <Callout tone={tone} title={title}>
+      {children && <p className="text-muted">{children}</p>}
+    </Callout>
   )
 }

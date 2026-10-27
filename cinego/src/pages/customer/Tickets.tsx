@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Qr } from '../../components/Qr'
 import { Divider, Row } from '../../components/OrderSummary'
-import { Message, Page, PageIntro, Panel } from '../../components/Layout'
+import { Callout, Message, Page, PageIntro, Panel } from '../../components/Layout'
 import { tickets, type Ticket } from '../../data'
 import { useStore } from '../../store'
 import { Button, Chip, EmptyState, Field, StatusBadge, vnd } from '../../ui'
@@ -128,7 +128,7 @@ export function TicketDetail() {
             {t.food && <Row k="Đồ ăn" v={t.food} />}
             <Row k="Tổng thanh toán" v={vnd(t.total)} strong />
             {t.checkedIn && (
-              <div className="rounded-control border-l-[3px] border-warning bg-raised p-3 text-sm font-medium text-warning">! &nbsp;Đã check-in lúc {t.checkedIn}</div>
+              <Callout tone="warning" title={`Đã check-in lúc ${t.checkedIn}`} />
             )}
           </div>
         </section>

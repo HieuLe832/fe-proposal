@@ -4,7 +4,7 @@
 /*
  * CineGo semantic tokens. Six modes = 3 palettes x 2 design versions:
  *   original : navy dark / cool light / beige   (Figma "SE_FRI")
- *   edited   : warm dark / rose light / beige   (Figma "SE_FRI Copy")
+ *   edited   : charcoal dark / rose light / beige   (Figma "SE_FRI Copy"), plus extra dark palettes (noir, amber, teal, gold, neon)
  * Values come from the Figma variable collections (color/*).
  */
 @theme inline {
@@ -112,30 +112,171 @@
 }
 
 [data-theme='edit-dark'] {
+  /* Color Hunt "222831 / 393E46 / 948979 / DFD0B8": charcoal base, sand text. */
   color-scheme: dark;
-  --c-background: #1d1616;
-  --c-surface: #261d1d;
-  --c-raised: #312626;
-  --c-text: #eeeeee;
-  --c-muted: #b8acac;
-  --c-border: #4a3d3d;
+  --c-background: #222831;
+  --c-surface: #2c323b;
+  --c-raised: #393e46;
+  --c-text: #dfd0b8;
+  --c-muted: #b8ad9b;
+  --c-border: #4d535c;
   --c-primary: #d13a3a;
-  --c-gold: #d9b36c;
+  --c-gold: #e0c48e;
   --c-success: #6fcf9f;
   --c-warning: #e8b86d;
   --c-error: #f7707f;
   --c-info: #86b9ff;
   --c-on-primary: #ffffff;
   --c-on-gold: #151515;
-  --poster-1: #703636;
-  --poster-2: #6b4f55;
-  --poster-3: #6f5535;
-  --poster-4: #5a3b4e;
-  --poster-5: #4e534b;
-  --poster-to: #181111;
-  --hero-from: #6b3030;
-  --hero-via: #3b2020;
-  --hero-to: #181111;
+  --poster-1: #5a5f66;
+  --poster-2: #625e57;
+  --poster-3: #6a6252;
+  --poster-4: #4f5a63;
+  --poster-5: #55584f;
+  --poster-to: #1b1f26;
+  --hero-from: #5b5a55;
+  --hero-via: #31373f;
+  --hero-to: #1b1f26;
+}
+
+[data-theme='edit-noir'] {
+  /* Color Hunt "1A1A1D / 4E4E50 / 6F2232 / 950740": near-black base, wine-red accents. */
+  color-scheme: dark;
+  --c-background: #1a1a1d;
+  --c-surface: #232327;
+  --c-raised: #2e2e33;
+  --c-text: #ececee;
+  --c-muted: #b0b0b6;
+  --c-border: #4e4e50;
+  --c-primary: #c3073f;
+  --c-gold: #d9b36c;
+  --c-success: #6fcf9f;
+  --c-warning: #e8b86d;
+  --c-error: #ff7a8f;
+  --c-info: #86b9ff;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #151515;
+  --poster-1: #6f2232;
+  --poster-2: #5c3a44;
+  --poster-3: #6a4a35;
+  --poster-4: #4e4a58;
+  --poster-5: #4e4e50;
+  --poster-to: #141417;
+  --hero-from: #6f2232;
+  --hero-via: #2c1a21;
+  --hero-to: #141417;
+}
+
+[data-theme='edit-amber'] {
+  /* Color Hunt "000000 / 14213D / FCA311 / E5E5E5": black base, navy panels, amber accent. */
+  color-scheme: dark;
+  --c-background: #07090f;
+  --c-surface: #0e1423;
+  --c-raised: #14213d;
+  --c-text: #e5e5e5;
+  --c-muted: #aab0bd;
+  --c-border: #2a3a5e;
+  --c-primary: #fca311;
+  --c-gold: #f7c873;
+  --c-success: #6fcf9f;
+  --c-warning: #e8b86d;
+  --c-error: #ff7a8f;
+  --c-info: #86b9ff;
+  --c-on-primary: #151515;
+  --c-on-gold: #151515;
+  --poster-1: #2a3a5e;
+  --poster-2: #3a4258;
+  --poster-3: #5a4a30;
+  --poster-4: #2f4a5e;
+  --poster-5: #3f4450;
+  --poster-to: #05070b;
+  --hero-from: #5a3d12;
+  --hero-via: #1a1a24;
+  --hero-to: #05070b;
+}
+
+[data-theme='edit-teal'] {
+  /* Color Hunt "222831 / 31363F / 76ABAE / EEEEEE": dark graphite base, teal accent. */
+  color-scheme: dark;
+  --c-background: #161a20;
+  --c-surface: #1e232b;
+  --c-raised: #2b313b;
+  --c-text: #eeeeee;
+  --c-muted: #b3bac4;
+  --c-border: #424954;
+  --c-primary: #76abae;
+  --c-gold: #e0c48e;
+  --c-success: #6fcf9f;
+  --c-warning: #e8b86d;
+  --c-error: #ff7a8f;
+  --c-info: #86b9ff;
+  --c-on-primary: #151515;
+  --c-on-gold: #151515;
+  --poster-1: #3d5a5c;
+  --poster-2: #4a5560;
+  --poster-3: #55604f;
+  --poster-4: #3a5560;
+  --poster-5: #4a5058;
+  --poster-to: #12151a;
+  --hero-from: #3d5a5c;
+  --hero-via: #232a32;
+  --hero-to: #12151a;
+}
+
+[data-theme='edit-gold'] {
+  /* Black and gold: near-black base, brass accent, ivory text. */
+  color-scheme: dark;
+  --c-background: #0a0a0a;
+  --c-surface: #141414;
+  --c-raised: #242424;
+  --c-text: #f5f0e1;
+  --c-muted: #b5ae9c;
+  --c-border: #3d3a30;
+  --c-primary: #c9a227;
+  --c-gold: #e6c75d;
+  --c-success: #6fcf9f;
+  --c-warning: #e8b86d;
+  --c-error: #ff8a80;
+  --c-info: #86b9ff;
+  --c-on-primary: #151515;
+  --c-on-gold: #151515;
+  --poster-1: #4a4538;
+  --poster-2: #524a3a;
+  --poster-3: #5a4f30;
+  --poster-4: #3f3f3f;
+  --poster-5: #4a463a;
+  --poster-to: #070707;
+  --hero-from: #4a3d12;
+  --hero-via: #1c1a12;
+  --hero-to: #070707;
+}
+
+[data-theme='edit-neon'] {
+  /* Color Hunt "252A34 / 08D9D6 / FF2E63 / EAEAEA": dark slate base, pink accent, cyan info. */
+  color-scheme: dark;
+  --c-background: #14161c;
+  --c-surface: #1c1f27;
+  --c-raised: #252a34;
+  --c-text: #eaeaea;
+  --c-muted: #b0b6c2;
+  --c-border: #3d4452;
+  --c-primary: #e0194f;
+  --c-gold: #f2c46d;
+  --c-success: #6fcf9f;
+  --c-warning: #e8b86d;
+  --c-error: #ff7a8f;
+  --c-info: #4fe3e0;
+  --c-on-primary: #ffffff;
+  --c-on-gold: #151515;
+  --poster-1: #4a2a40;
+  --poster-2: #2a4a50;
+  --poster-3: #4a3a55;
+  --poster-4: #2f3f5a;
+  --poster-5: #3a4a4a;
+  --poster-to: #0d0e12;
+  --hero-from: #5a1a35;
+  --hero-via: #1c1a28;
+  --hero-to: #0d0e12;
 }
 
 [data-theme='edit-light'] {
@@ -206,4 +347,14 @@ body {
   transition:
     background-color 0.2s,
     color 0.2s;
+}
+
+/* Edited-theme message cards: border and fill are the tone color mixed into the surface. */
+.msg-success { --tone: var(--c-success); }
+.msg-error { --tone: var(--c-error); }
+.msg-warning { --tone: var(--c-warning); }
+.msg-info { --tone: var(--c-info); }
+.msg-edit {
+  border: 1px solid color-mix(in srgb, var(--tone) 35%, var(--c-border));
+  background: color-mix(in srgb, var(--tone) 12%, var(--c-surface));
 }

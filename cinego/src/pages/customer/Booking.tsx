@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Divider, OrderSummary, Row } from '../../components/OrderSummary'
-import { Message, Page, PageIntro, Panel } from '../../components/Layout'
+import { Callout, Message, Page, PageIntro, Panel } from '../../components/Layout'
 import { cinemas, foods, movies, SEAT_PRICE } from '../../data'
 import { useStore } from '../../store'
 import { BookingStepper, Button, Chip, Countdown, Field, vnd } from '../../ui'
@@ -199,10 +199,9 @@ export function Payment() {
       <div className="w-[240px]">
         <Countdown seconds={booking.holdUntil ? secondsLeft : 272} />
       </div>
-      <div className="rounded-control border-l-[3px] border-warning bg-raised p-4 text-sm font-medium">
-        <p className="text-warning">! &nbsp;Thanh toán mô phỏng – không sử dụng tiền thật</p>
+      <Callout tone="warning" title="Thanh toán mô phỏng – không sử dụng tiền thật">
         <p className="text-fg">Chỉ dùng dữ liệu mẫu bên dưới. Không nhập số thẻ, mã bảo mật hoặc thông tin ngân hàng thật.</p>
-      </div>
+      </Callout>
       <div className="flex flex-col gap-8 xl:flex-row">
         <div className="flex min-w-0 flex-1 flex-col gap-6">
           <Panel title="Phương thức thanh toán">

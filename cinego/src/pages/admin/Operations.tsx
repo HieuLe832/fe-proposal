@@ -2,7 +2,7 @@ import { useMemo, useState, type FormEvent, type ReactNode } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { ALink, AdminHead, Dot, PillSelect } from '../../components/AdminLayout'
 import { Row } from '../../components/OrderSummary'
-import { Message } from '../../components/Layout'
+import { Callout, Message } from '../../components/Layout'
 import { Button, Chip, cx, Dialog, Field, Table, vnd } from '../../ui'
 
 /* ───────────── 07 Showtimes ───────────── */
@@ -137,12 +137,11 @@ export function CreateShowtime() {
       <form onSubmit={submit} noValidate className="grid items-start gap-6 xl:grid-cols-[1fr_300px]">
         <div className="flex flex-col gap-6">
           {conflict && (
-            <div role="alert" className="rounded-control border-l-[3px] border-danger bg-raised p-4 text-sm font-medium">
-              <p className="text-danger">⊗ &nbsp;Không thể lưu · Suất chiếu bị chồng lịch</p>
+            <Callout tone="error" glyph="⊗" title="Không thể lưu · Suất chiếu bị chồng lịch">
               <p>
                 Phòng 03 đã có lịch {EXISTING.start}–{EXISTING.end}. Suất mới {start}–{end} giao nhau {overlapMin} phút.
               </p>
-            </div>
+            </Callout>
           )}
           <section className="flex flex-col gap-4 rounded-card border border-line bg-surface p-6">
             <h2 className="text-xl font-semibold leading-7">Thông tin suất chiếu</h2>
@@ -197,15 +196,14 @@ export function CreateShowtime() {
             )}
           </aside>
           {conflict ? (
-            <div className="rounded-control border-l-[3px] border-warning bg-raised p-4 text-sm font-medium">
-              <p className="text-warning">⚠ &nbsp;Điều chỉnh giờ bắt đầu: {EXISTING.ready}</p>
+            <Callout tone="warning" glyph="⚠" title={`Điều chỉnh giờ bắt đầu: ${EXISTING.ready}`}>
               <p>Kết thúc phim mới lúc {fromMin(toMin(EXISTING.ready) + FILM_MIN)}.</p>
               <p>Phòng sẵn sàng lại lúc {fromMin(toMin(EXISTING.ready) + FILM_MIN + CLEAN)}.</p>
               <p>Hoặc chọn phòng hay ngày khác.</p>
               <Button type="button" size="sm" className="mt-3" onClick={() => setStart(EXISTING.ready)}>
                 Dùng {EXISTING.ready}
               </Button>
-            </div>
+            </Callout>
           ) : (
             <Message tone={valid ? 'success' : 'warning'} title={valid ? 'Khung giờ hợp lệ' : 'Giờ chưa hợp lệ'}>
               {valid ? 'Không chồng lịch trong dữ liệu ví dụ. Có thể lưu suất chiếu.' : 'Nhập giờ bắt đầu dạng HH:MM.'}
@@ -488,10 +486,9 @@ export function Users() {
         ])}
         footer={<span>Hiển thị 1–{list.length} / 42 người dùng &nbsp; ‹ &nbsp;1&nbsp; 2&nbsp; 3&nbsp; …&nbsp; 7&nbsp; ›</span>}
       />
-      <div className="rounded-control border-l-[3px] border-warning bg-raised p-4 text-sm font-medium">
-        <p className="text-warning">⚠ &nbsp;Quyền Admin là quyền nhạy cảm</p>
+      <Callout tone="warning" glyph="⚠" title="Quyền Admin là quyền nhạy cảm">
         <p>Chỉ Admin được phân quyền. Yêu cầu xác thực lại và xác nhận trước khi đổi vai trò; không tự khóa tài khoản đang đăng nhập hoặc hạ quyền Admin cuối cùng.</p>
-      </div>
+      </Callout>
       <div className="grid gap-6 md:grid-cols-3">
         {[
           ['Customer', 'Đặt vé, thanh toán mô phỏng, quản lý vé cá nhân.'],

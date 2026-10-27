@@ -1,6 +1,6 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { ThemeSwitcher } from '../../components/Layout'
+import { Callout, ThemeSwitcher } from '../../components/Layout'
 import { Row } from '../../components/OrderSummary'
 import { Button, cx, Field, vnd } from '../../ui'
 
@@ -261,13 +261,10 @@ export default function CheckIn() {
 }
 
 function Banner({ tone, title, children }: { tone: 'success' | 'danger' | 'warning' | 'info'; title: string; children: ReactNode }) {
-  const c = { success: ['border-success', 'text-success', '✓'], danger: ['border-danger', 'text-danger', '⊗'], warning: ['border-warning', 'text-warning', '⚠'], info: ['border-info', 'text-info', 'ⓘ'] }[tone]
+  const glyph = { success: '✓', danger: '⊗', warning: '⚠', info: 'ⓘ' }[tone]
   return (
-    <div className={cx('rounded-control border-l-[3px] bg-raised p-4 text-sm font-medium', c[0])}>
-      <p className={c[1]}>
-        {c[2]} &nbsp;{title}
-      </p>
+    <Callout tone={tone === 'danger' ? 'error' : tone} glyph={glyph} title={title}>
       <p className="text-fg">{children}</p>
-    </div>
+    </Callout>
   )
 }
